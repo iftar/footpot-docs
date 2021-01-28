@@ -1,0 +1,225 @@
+openapi: 3.0.0
+info:
+  description: "This API allows you to get data for Foodpot application"
+  version: "1.0.0"
+  title: "Foodpot API"
+host: "share-iftar-staging.herokuapp.com"
+basePath: "/api"
+tags:
+  - name: "Charities"
+    description: "APIs for Charity Details"
+  - name: "Collection Points"
+    description: "APIs for Collection Point Details"
+  - name: "Account"
+    description: "APIs for User Accounts"
+  - name: "Orders"
+    description: "APIs for User Orders"
+
+schemes:
+  - "https"
+paths:
+  /charities:
+    get:
+      tags:
+        - Charities
+      summary: "Get List of Charities"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+  /collection-points:
+    get:
+      tags:
+        - Collection Points
+      summary: "Get List of Collection Points"
+      consumes:
+        - "application/json"
+      parameters:
+      responses:
+        "200":
+          description: "successful operation"
+  /collection-points/:id:
+    get:
+      tags:
+        - Collection Points
+      summary: "/collection-points/{id}"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /collection-points/:id/can-deliver-to-location:
+    get:
+      tags:
+        - Collection Points
+      summary: "Check if collection point can delivery to location"
+      responses:
+        "200":
+          description: "successful operation"
+  /collection-point/:id/meal-details:
+    get:
+      tags:
+        - Collection Points
+  /forgot-password:
+    post:
+      tags:
+        - Account
+      summary: "Forgot Password"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /login:
+    post:
+      tags:
+        - Account
+      summary: "Login User"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /logout:
+    post:
+      tags:
+        - Account
+      summary: "Logout User"
+      responses:
+        "200":
+          description: "successful operation"
+  /register:
+    post:
+      tags:
+        - Account
+      summary: "Register User"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+        - name: "swagerize"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /user:
+    post:
+      tags:
+        - Account
+      summary: "Update logged in user info"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+    get:
+      tags:
+        - Account
+      summary: "Get logged in user info"
+      parameters:
+        - name: "Authorization"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /user/orders:
+    post:
+      tags:
+        - Orders
+      summary: "Create New Order For Logged In User"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+    get:
+      tags:
+        - Orders
+      summary: "Get user's orders"
+      responses:
+        "200":
+          description: "successful operation"
+  /user/orders/:id:
+    get:
+      tags:
+        - Orders
+      summary: "Get a single user order by id"
+      responses:
+        "200":
+          description: "successful operation"
+    post:
+      tags:
+        - Orders
+      summary: "Update a single user order by id"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "Content-Type"
+          in: "header"
+          type: "string"
+          description: ""
+          required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /user/orders/check:
+    get:
+      tags:
+        - Orders
+      summary: "Check if user can make order"
+      responses:
+        "200":
+          description: "successful operation"
+  /user/orders/today:
+    get:
+      tags:
+        - Orders
+      summary: "Get today's orders for logged in user"
+      responses:
+        "200":
+          description: "successful operation"
