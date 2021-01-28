@@ -24,7 +24,7 @@ jobs:
         uses: Legion2/swagger-ui-action@v1
         with:
           output: swagger-ui
-          spec-file: reference/Food-Pot-API-Laravel.v1.json
+          spec-file: reference/Food-Pot-API-Laravel.v1.yaml
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
