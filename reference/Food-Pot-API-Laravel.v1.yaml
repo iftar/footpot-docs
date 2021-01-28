@@ -829,7 +829,7 @@ paths:
                             accepting_orders: true
   'api/collection-points/:id/can-deliver-to-location':
     post:
-      summary: ''
+      summary: Check if  collection point can deliver to a location
       operationId: 'post-collection-points-:id-can-deliver-to-location'
       responses:
         '200':
@@ -887,6 +887,8 @@ paths:
                   minLength: 1
               required:
                 - postcode
+      tags:
+        - Collection Points
   api/forgot-password:
     post:
       tags:
