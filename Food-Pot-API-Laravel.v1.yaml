@@ -12,6 +12,7 @@ tags:
     description: APIs for User Accounts
   - name: Orders
     description: APIs for User Orders
+  - name: tags
 paths:
   api/charities:
     get:
@@ -1558,7 +1559,8 @@ paths:
   api/tags/food-type:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - tags
       responses:
         '200':
           description: OK
@@ -1610,13 +1612,13 @@ paths:
                     status: success
                     data:
                       - id: 1
-                        name: Dr. Faustino Jast Sr.
+                        name: Home Essentials
                         type: FOOD_TYPE_TAG
                         image_url: 'https://lorempixel.com/640/480/?24588'
                         created_at: '2021-01-26T20:37:11.000000Z'
                         updated_at: '2021-01-26T20:37:11.000000Z'
                       - id: 2
-                        name: Dana Batz
+                        name: School Meals
                         type: FOOD_TYPE_TAG
                         image_url: 'https://lorempixel.com/640/480/?67957'
                         created_at: '2021-01-26T20:37:11.000000Z'
@@ -1677,8 +1679,27 @@ paths:
                 required:
                   - status
                   - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    data:
+                      - id: 1
+                        name: Dr. Faustino Jast Sr.
+                        type: FOOD_TYPE_TAG
+                        image_url: 'https://lorempixel.com/640/480/?24588'
+                        created_at: '2021-01-26T20:37:11.000000Z'
+                        updated_at: '2021-01-26T20:37:11.000000Z'
+                      - id: 2
+                        name: Dana Batz
+                        type: FOOD_TYPE_TAG
+                        image_url: 'https://lorempixel.com/640/480/?67957'
+                        created_at: '2021-01-26T20:37:11.000000Z'
+                        updated_at: '2021-01-26T20:37:11.000000Z'
       operationId: get-tags-dietary-requirements
       description: returns a list of dietary Rrquirements tags with images
+      tags:
+        - tags
 components:
   schemas:
     User:
