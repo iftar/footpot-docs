@@ -343,9 +343,22 @@ paths:
                     minLength: 1
                   data:
                     type: object
+                    required:
+                      - collection_points
                     properties:
                       collection_points:
                         type: object
+                        required:
+                          - current_page
+                          - data
+                          - first_page_url
+                          - from
+                          - last_page
+                          - last_page_url
+                          - path
+                          - per_page
+                          - to
+                          - total
                         properties:
                           current_page:
                             type: number
@@ -354,22 +367,7 @@ paths:
                             uniqueItems: true
                             minItems: 1
                             items:
-                              required:
-                                - id
-                                - name
-                                - address_line_1
-                                - address_line_2
-                                - city
-                                - county
-                                - post_code
-                                - max_daily_capacity
-                                - lat
-                                - lng
-                                - delivery_radius
-                                - available_capacity
-                                - accepting_orders
-                                - accepting_collections
-                                - accepting_deliveries
+                              type: object
                               properties:
                                 id:
                                   type: number
@@ -409,52 +407,12 @@ paths:
                                   type: boolean
                                 accepting_deliveries:
                                   type: boolean
-                                collection_point_time_slots:
-                                  type: array
-                                  uniqueItems: true
-                                  minItems: 1
-                                  items:
-                                    required:
-                                      - id
-                                      - collection_point_id
-                                      - start_time
-                                      - end_time
-                                      - max_capacity
-                                      - type
-                                      - available_capacity
-                                      - accepting_orders
-                                    properties:
-                                      id:
-                                        type: number
-                                      collection_point_id:
-                                        type: number
-                                      start_time:
-                                        type: string
-                                        minLength: 1
-                                      end_time:
-                                        type: string
-                                        minLength: 1
-                                      max_capacity:
-                                        type: number
-                                      type:
-                                        type: string
-                                        minLength: 1
-                                      available_capacity:
-                                        type: number
-                                      accepting_orders:
-                                        type: boolean
                                 tags:
                                   type: array
                                   uniqueItems: true
                                   minItems: 1
                                   items:
-                                    required:
-                                      - id
-                                      - name
-                                      - type
-                                      - image_url
-                                      - created_at
-                                      - updated_at
+                                    type: object
                                     properties:
                                       id:
                                         type: number
@@ -485,6 +443,29 @@ paths:
                                         required:
                                           - collection_point_id
                                           - tag_id
+                                    required:
+                                      - id
+                                      - name
+                                      - type
+                                      - image_url
+                                      - created_at
+                                      - updated_at
+                              required:
+                                - id
+                                - name
+                                - address_line_1
+                                - address_line_2
+                                - city
+                                - county
+                                - post_code
+                                - max_daily_capacity
+                                - lat
+                                - lng
+                                - delivery_radius
+                                - available_capacity
+                                - accepting_orders
+                                - accepting_collections
+                                - accepting_deliveries
                           first_page_url:
                             type: string
                             minLength: 1
@@ -506,117 +487,465 @@ paths:
                             type: number
                           total:
                             type: number
-                        required:
-                          - current_page
-                          - data
-                          - first_page_url
-                          - from
-                          - last_page
-                          - last_page_url
-                          - path
-                          - per_page
-                          - to
-                          - total
-                    required:
-                      - collection_points
                 required:
                   - status
                   - data
               examples:
-                example-1:
+                example:
                   value:
                     status: success
                     data:
                       collection_points:
-                        current_page: 1
+                        - id: 1
+                          name: Harris and Sons
+                          address_line_1: 1 Holmes Haven
+                          address_line_2: Holly Fords
+                          city: Thomasview
+                          county: Somerset
+                          post_code: G69 7EA
+                          max_daily_capacity: 81
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1974-10-14 11:44:01'
+                          end_pick_up_time: '1983-10-22 14:31:50'
+                          cut_off_point: '2008-08-19 08:48:16'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 81
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 1
+                              name: Royal Koelpin
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?30443'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '1'
+                            - id: 2
+                              name: Mr. Jaren Lueilwitz
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?88586'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '2'
+                            - id: 3
+                              name: Mr. Montana Runte V
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?53238'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '3'
+                            - id: 11
+                              name: Prof. Stephany O'Connell
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?14143'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '11'
+                            - id: 12
+                              name: Prof. Gia Johns II
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?61342'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '12'
+                            - id: 13
+                              name: Lucio Lindgren
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?70159'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '13'
+                            - id: 20
+                              name: Shemar Paucek
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?38451'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '20'
+                            - id: 1
+                              name: Royal Koelpin
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?30443'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '24'
+                                tag_id: '1'
+                        - id: 2
+                          name: Johnson-Jackson
+                          address_line_1: 77 Sophie Well
+                          address_line_2: Thomas Oval
+                          city: Robertsland
+                          county: Wigtownshire
+                          post_code: CW1 5PG
+                          max_daily_capacity: 95
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '2001-09-09 03:30:01'
+                          end_pick_up_time: '1978-08-26 23:13:28'
+                          cut_off_point: '2007-02-25 14:22:23'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 95
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 11
+                              name: Prof. Stephany O'Connell
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?14143'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '1'
+                                tag_id: '11'
+                        - id: 3
+                          name: 'Bennett, Bennett and Walker'
+                          address_line_1: |-
+                            Flat 62
+                            Jake Brooks
+                          address_line_2: Martin Lakes
+                          city: Carriehaven
+                          county: Northamptonshire
+                          post_code: LE4 4JR
+                          max_daily_capacity: 98
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '2007-05-26 16:20:02'
+                          end_pick_up_time: '2013-01-23 12:04:56'
+                          cut_off_point: '1982-03-26 20:13:12'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 98
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 6
+                              name: Emmet Hegmann Sr.
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?14038'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '6'
+                                tag_id: '6'
+                            - id: 9
+                              name: Eino Lemke
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?98254'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '12'
+                                tag_id: '9'
+                            - id: 7
+                              name: Stephania Kutch
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?11509'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '20'
+                                tag_id: '7'
+                        - id: 4
+                          name: Lloyd-Wright
+                          address_line_1: |-
+                            Studio 25n
+                            Luke Land
+                          address_line_2: Ben Bridge
+                          city: West Avatown
+                          county: Berwickshire
+                          post_code: LS25 2AY
+                          max_daily_capacity: 73
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1996-06-19 12:43:50'
+                          end_pick_up_time: '2010-10-25 19:49:01'
+                          cut_off_point: '2001-12-13 03:05:58'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 73
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 1
+                              name: Royal Koelpin
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?30443'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '5'
+                                tag_id: '1'
+                        - id: 5
+                          name: Rogers-Rose
+                          address_line_1: 1 Callum Trace
+                          address_line_2: Joe Heights
+                          city: West Isabellaton
+                          county: Wiltshire
+                          post_code: DT7 3SY
+                          max_daily_capacity: 96
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1980-07-07 04:00:17'
+                          end_pick_up_time: '2002-09-24 05:06:54'
+                          cut_off_point: '2011-11-11 07:35:59'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 96
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 9
+                              name: Eino Lemke
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?98254'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '3'
+                                tag_id: '9'
+                            - id: 11
+                              name: Prof. Stephany O'Connell
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?14143'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '27'
+                                tag_id: '11'
+                        - id: 6
+                          name: Robertson-Campbell
+                          address_line_1: 201 Marshall Spring
+                          address_line_2: Amy Ramp
+                          city: Lake Damienstad
+                          county: Warwickshire
+                          post_code: IG10 3JT
+                          max_daily_capacity: 67
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1988-12-24 16:54:34'
+                          end_pick_up_time: '1982-09-28 05:01:12'
+                          cut_off_point: '1976-02-03 22:21:14'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 67
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 4
+                              name: Ellis Schmeler
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?10559'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '8'
+                                tag_id: '4'
+                        - id: 7
+                          name: Harrison and Sons
+                          address_line_1: 48 Phillips Union
+                          address_line_2: Luke Hills
+                          city: South Dominic
+                          county: Isles of Scilly
+                          post_code: ST21 6SR
+                          max_daily_capacity: 95
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1988-09-09 02:35:34'
+                          end_pick_up_time: '1972-08-14 01:59:07'
+                          cut_off_point: '2007-09-21 18:40:21'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 95
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 1
+                              name: Royal Koelpin
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?30443'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '9'
+                                tag_id: '1'
+                        - id: 8
+                          name: Russell Ltd
+                          address_line_1: 3 Patel Fort
+                          address_line_2: Mason Common
+                          city: Wilkinsonborough
+                          county: Nottinghamshire
+                          post_code: OL12 6RA
+                          max_daily_capacity: 100
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '2019-02-01 14:33:16'
+                          end_pick_up_time: '1993-11-01 08:54:38'
+                          cut_off_point: '1979-01-14 12:34:39'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 100
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags: []
+                        - id: 9
+                          name: 'Clarke, Allen and Reid'
+                          address_line_1: |-
+                            Flat 05h
+                            Davies Cliffs
+                          address_line_2: Reynolds Circles
+                          city: Lolastad
+                          county: Peebleshire
+                          post_code: DY5 3EH
+                          max_daily_capacity: 73
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1979-07-10 04:26:44'
+                          end_pick_up_time: '1976-08-26 06:39:28'
+                          cut_off_point: '1977-12-11 10:06:34'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 73
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 3
+                              name: Mr. Montana Runte V
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?53238'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '2'
+                                tag_id: '3'
+                            - id: 3
+                              name: Mr. Montana Runte V
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?53238'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '28'
+                                tag_id: '3'
+                        - id: 10
+                          name: Wilson-Adams
+                          address_line_1: 54 Davis Light
+                          address_line_2: Wilson Cliff
+                          city: West Andrew
+                          county: Banffshire
+                          post_code: NP4 8LA
+                          max_daily_capacity: 93
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '2011-04-18 12:42:09'
+                          end_pick_up_time: '2019-06-08 19:53:43'
+                          cut_off_point: '1978-04-16 10:01:05'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 93
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags: []
+                example-2:
+                  value:
+                    status: string
+                    data:
+                      collection_points:
+                        current_page: 0
                         data:
-                          - id: 1
-                            name: Smith-Taylor
-                            address_line_1: 70 Parker View
-                            address_line_2: Jacob Manor
-                            city: Lake Selina
-                            county: Anglesey
-                            post_code: TR15 1PH
-                            max_daily_capacity: 88
-                            lat: '51.509865'
-                            lng: '-0.118092'
-                            delivery_radius: 3
-                            available_capacity: 88
+                          - id: 0
+                            name: string
+                            address_line_1: string
+                            address_line_2: string
+                            city: string
+                            county: string
+                            post_code: string
+                            max_daily_capacity: 0
+                            lat: string
+                            lng: string
+                            delivery_radius: 0
+                            available_capacity: 0
                             accepting_orders: true
                             accepting_collections: true
                             accepting_deliveries: true
-                            collection_point_time_slots:
-                              - id: 1
-                                collection_point_id: 1
-                                start_time: '18:00'
-                                end_time: '18:15'
-                                max_capacity: 5
-                                type: user_pickup
-                                available_capacity: 5
-                                accepting_orders: true
                             tags:
-                              - id: 2
-                                name: Dana Batz
-                                type: FOOD_TYPE_TAG
-                                image_url: 'https://lorempixel.com/640/480/?67957'
-                                created_at: '2021-01-26T20:37:11.000000Z'
-                                updated_at: '2021-01-26T20:37:11.000000Z'
+                              - id: 0
+                                name: string
+                                type: string
+                                image_url: string
+                                created_at: string
+                                updated_at: string
                                 pivot:
-                                  collection_point_id: '1'
-                                  tag_id: '2'
-                              - id: 3
-                                name: Beth Treutel
-                                type: FOOD_TYPE_TAG
-                                image_url: 'https://lorempixel.com/640/480/?58295'
-                                created_at: '2021-01-26T20:37:11.000000Z'
-                                updated_at: '2021-01-26T20:37:11.000000Z'
-                                pivot:
-                                  collection_point_id: '1'
-                                  tag_id: '3'
-                          - id: 2
-                            name: James LLC
-                            address_line_1: 794 Peter Meadows
-                            address_line_2: Chapman Springs
-                            city: North Joanne
-                            county: Merionethshire
-                            post_code: CW5 6DY
-                            max_daily_capacity: 97
-                            lat: '51.509865'
-                            lng: '-0.118092'
-                            delivery_radius: 3
-                            available_capacity: 97
-                            accepting_orders: true
-                            accepting_collections: true
-                            accepting_deliveries: true
-                            collection_point_time_slots:
-                              - id: 9
-                                collection_point_id: 2
-                                start_time: '18:00'
-                                end_time: '18:15'
-                                max_capacity: 5
-                                type: user_pickup
-                                available_capacity: 5
-                                accepting_orders: true
-                              - id: 16
-                                collection_point_id: 2
-                                start_time: '19:00'
-                                end_time: '19:15'
-                                max_capacity: 5
-                                type: charity_pickup
-                                available_capacity: 5
-                                accepting_orders: true
-                            tags: []
-                        first_page_url: 'https://api-backend.test/api/collection-points?page=1'
-                        from: 1
-                        last_page: 1
-                        last_page_url: 'https://api-backend.test/api/collection-points?page=1'
+                                  collection_point_id: string
+                                  tag_id: string
+                        first_page_url: string
+                        from: 0
+                        last_page: 0
+                        last_page_url: string
                         next_page_url: null
-                        path: 'https://api-backend.test/api/collection-points'
-                        per_page: 15
+                        path: string
+                        per_page: 0
                         prev_page_url: null
-                        to: 10
-                        total: 10
-      description: ''
+                        to: 0
+                        total: 0
+      description: return a list of collection points (with tags)
   'api/collection-points/:id':
     get:
       tags:
@@ -624,12 +953,7 @@ paths:
       summary: '/collection-points/{id}'
       consumes:
         - application/json
-      parameters:
-        - name: Content-Type
-          in: header
-          type: string
-          description: ''
-          required: true
+      parameters: []
       responses:
         '200':
           description: successful operation
@@ -678,6 +1002,22 @@ paths:
                             minLength: 1
                           delivery_radius:
                             type: number
+                          quantity_of_meals:
+                            type: number
+                          start_pick_up_time:
+                            type: string
+                            minLength: 1
+                          end_pick_up_time:
+                            type: string
+                            minLength: 1
+                          cut_off_point:
+                            type: string
+                            minLength: 1
+                          set_quantity_per_person:
+                            type: string
+                            minLength: 1
+                          logo: {}
+                          unique_url: {}
                           available_capacity:
                             type: number
                           accepting_orders:
@@ -686,40 +1026,48 @@ paths:
                             type: boolean
                           accepting_deliveries:
                             type: boolean
-                          collection_point_time_slots:
+                          tags:
                             type: array
                             uniqueItems: true
                             minItems: 1
                             items:
                               required:
                                 - id
-                                - collection_point_id
-                                - start_time
-                                - end_time
-                                - max_capacity
+                                - name
                                 - type
-                                - available_capacity
-                                - accepting_orders
+                                - image_url
+                                - created_at
+                                - updated_at
                               properties:
                                 id:
                                   type: number
-                                collection_point_id:
-                                  type: number
-                                start_time:
+                                name:
                                   type: string
                                   minLength: 1
-                                end_time:
-                                  type: string
-                                  minLength: 1
-                                max_capacity:
-                                  type: number
                                 type:
                                   type: string
                                   minLength: 1
-                                available_capacity:
-                                  type: number
-                                accepting_orders:
-                                  type: boolean
+                                image_url:
+                                  type: string
+                                  minLength: 1
+                                created_at:
+                                  type: string
+                                  minLength: 1
+                                updated_at:
+                                  type: string
+                                  minLength: 1
+                                pivot:
+                                  type: object
+                                  properties:
+                                    meal_id:
+                                      type: string
+                                      minLength: 1
+                                    tag_id:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - meal_id
+                                    - tag_id
                         required:
                           - id
                           - name
@@ -732,11 +1080,16 @@ paths:
                           - lat
                           - lng
                           - delivery_radius
+                          - quantity_of_meals
+                          - start_pick_up_time
+                          - end_pick_up_time
+                          - cut_off_point
+                          - set_quantity_per_person
                           - available_capacity
                           - accepting_orders
                           - accepting_collections
                           - accepting_deliveries
-                          - collection_point_time_slots
+                          - tags
                     required:
                       - collection_point
                 required:
@@ -748,86 +1101,49 @@ paths:
                     status: success
                     data:
                       collection_point:
-                        id: 1
-                        name: Smith-Taylor
-                        address_line_1: 70 Parker View
-                        address_line_2: Jacob Manor
-                        city: Lake Selina
-                        county: Anglesey
-                        post_code: TR15 1PH
-                        max_daily_capacity: 88
+                        id: 3
+                        name: 'Bennett, Bennett and Walker'
+                        address_line_1: |-
+                          Flat 62
+                          Jake Brooks
+                        address_line_2: Martin Lakes
+                        city: Carriehaven
+                        county: Northamptonshire
+                        post_code: LE4 4JR
+                        max_daily_capacity: 98
                         lat: '51.509865'
                         lng: '-0.118092'
                         delivery_radius: 3
-                        available_capacity: 88
+                        quantity_of_meals: 1
+                        start_pick_up_time: '2007-05-26 16:20:02'
+                        end_pick_up_time: '2013-01-23 12:04:56'
+                        cut_off_point: '1982-03-26 20:13:12'
+                        set_quantity_per_person: '1'
+                        logo: null
+                        unique_url: null
+                        available_capacity: 98
                         accepting_orders: true
                         accepting_collections: true
                         accepting_deliveries: true
-                        collection_point_time_slots:
-                          - id: 1
-                            collection_point_id: 1
-                            start_time: '18:00'
-                            end_time: '18:15'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
-                          - id: 2
-                            collection_point_id: 1
-                            start_time: '18:15'
-                            end_time: '18:30'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
-                          - id: 3
-                            collection_point_id: 1
-                            start_time: '18:30'
-                            end_time: '18:45'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
-                          - id: 4
-                            collection_point_id: 1
-                            start_time: '18:45'
-                            end_time: '19:00'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
-                          - id: 5
-                            collection_point_id: 1
-                            start_time: '19:15'
-                            end_time: '19:30'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
+                        tags:
                           - id: 6
-                            collection_point_id: 1
-                            start_time: '19:30'
-                            end_time: '19:45'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
-                          - id: 7
-                            collection_point_id: 1
-                            start_time: '19:45'
-                            end_time: '20:00'
-                            max_capacity: 5
-                            type: user_pickup
-                            available_capacity: 5
-                            accepting_orders: true
-                          - id: 8
-                            collection_point_id: 1
-                            start_time: '19:00'
-                            end_time: '19:15'
-                            max_capacity: 5
-                            type: charity_pickup
-                            available_capacity: 5
-                            accepting_orders: true
+                            name: School Essentials
+                            type: FOOD_TYPE_TAG
+                            image_url: 'https://lorempixel.com/640/480/?14038'
+                            created_at: '2021-02-08T23:59:18.000000Z'
+                            updated_at: '2021-02-08T23:59:18.000000Z'
+                            pivot:
+                              meal_id: '6'
+                              tag_id: '6'
+                          - id: 9
+                            name: Halal
+                            type: DIETARY_REQUIREMENT_TAG
+                            image_url: 'https://lorempixel.com/640/480/?98254'
+                            created_at: '2021-02-08T23:59:18.000000Z'
+                            updated_at: '2021-02-08T23:59:18.000000Z'
+                            pivot:
+                              meal_id: '12'
+                              tag_id: '9'
   'api/collection-points/:id/can-deliver-to-location':
     post:
       summary: Check if  collection point can deliver to a location
@@ -1685,14 +2001,14 @@ paths:
                     status: success
                     data:
                       - id: 1
-                        name: Dr. Faustino Jast Sr.
+                        name: School Essentials
                         type: FOOD_TYPE_TAG
                         image_url: 'https://lorempixel.com/640/480/?24588'
                         created_at: '2021-01-26T20:37:11.000000Z'
                         updated_at: '2021-01-26T20:37:11.000000Z'
                       - id: 2
-                        name: Dana Batz
-                        type: FOOD_TYPE_TAG
+                        name: Halal
+                        type: DIETARY_REQUIREMENT_TAG
                         image_url: 'https://lorempixel.com/640/480/?67957'
                         created_at: '2021-01-26T20:37:11.000000Z'
                         updated_at: '2021-01-26T20:37:11.000000Z'
@@ -1700,6 +2016,362 @@ paths:
       description: returns a list of dietary Rrquirements tags with images
       tags:
         - tags
+  'api/collection-points/:id/meals':
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Collection Points
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                          minLength: 1
+                        description:
+                          type: string
+                          minLength: 1
+                        quantity:
+                          type: integer
+                        collection_point_id:
+                          type: integer
+                        created_at:
+                          type: string
+                          minLength: 1
+                        updated_at:
+                          type: string
+                          minLength: 1
+                        tags:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              name:
+                                type: string
+                                minLength: 1
+                              type:
+                                type: string
+                                minLength: 1
+                              image_url:
+                                type: string
+                                minLength: 1
+                              created_at:
+                                type: string
+                                minLength: 1
+                              updated_at:
+                                type: string
+                                minLength: 1
+                              pivot:
+                                type: object
+                                properties:
+                                  meal_id:
+                                    type: string
+                                    minLength: 1
+                                  tag_id:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - meal_id
+                                  - tag_id
+                            required:
+                              - id
+                              - name
+                              - type
+                              - image_url
+                              - created_at
+                              - updated_at
+                      required:
+                        - id
+                        - name
+                        - description
+                        - quantity
+                        - collection_point_id
+                        - created_at
+                        - updated_at
+                required:
+                  - status
+                  - data
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    data:
+                      - id: 6
+                        name: Chicken and Rice box
+                        description: Consequatur ipsam repudiandae eos facere quos quia necessitatibus eveniet repellat.
+                        quantity: 66
+                        collection_point_id: 3
+                        created_at: '2021-02-08T23:59:18.000000Z'
+                        updated_at: '2021-02-08T23:59:18.000000Z'
+                        tags:
+                          - id: 6
+                            name: Emmet Hegmann Sr.
+                            type: FOOD_TYPE_TAG
+                            image_url: 'https://lorempixel.com/640/480/?14038'
+                            created_at: '2021-02-08T23:59:18.000000Z'
+                            updated_at: '2021-02-08T23:59:18.000000Z'
+                            pivot:
+                              meal_id: '6'
+                              tag_id: '6'
+                      - id: 11
+                        name: Bariis and hilib
+                        description: Sapiente aliquam id incidunt ducimus.
+                        quantity: 5
+                        collection_point_id: 5
+                        created_at: '2021-02-08T23:59:18.000000Z'
+                        updated_at: '2021-02-08T23:59:18.000000Z'
+                        tags: []
+      operationId: 'get-api-collection-points-:id-meals'
+      description: returns a list of meals (with tags) avalible that has more than one in quantity
+  /api/collection-points/near-me:
+    get:
+      summary: ''
+      tags: []
+      responses: {}
+      operationId: get-api-collection-points-near-me
+      description: ''
+    post:
+      summary: Get collection points near postcode
+      operationId: post-api-collection-points-near-me
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: object
+                    properties:
+                      collection_points:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - id
+                            - name
+                            - address_line_1
+                            - address_line_2
+                            - city
+                            - county
+                            - post_code
+                            - max_daily_capacity
+                            - lat
+                            - lng
+                            - delivery_radius
+                            - quantity_of_meals
+                            - start_pick_up_time
+                            - end_pick_up_time
+                            - cut_off_point
+                            - set_quantity_per_person
+                            - available_capacity
+                            - accepting_orders
+                            - accepting_collections
+                            - accepting_deliveries
+                          properties:
+                            id:
+                              type: number
+                            name:
+                              type: string
+                              minLength: 1
+                            address_line_1:
+                              type: string
+                              minLength: 1
+                            address_line_2:
+                              type: string
+                              minLength: 1
+                            city:
+                              type: string
+                              minLength: 1
+                            county:
+                              type: string
+                              minLength: 1
+                            post_code:
+                              type: string
+                              minLength: 1
+                            max_daily_capacity:
+                              type: number
+                            lat:
+                              type: string
+                              minLength: 1
+                            lng:
+                              type: string
+                              minLength: 1
+                            delivery_radius:
+                              type: number
+                            quantity_of_meals:
+                              type: number
+                            start_pick_up_time:
+                              type: string
+                              minLength: 1
+                            end_pick_up_time:
+                              type: string
+                              minLength: 1
+                            cut_off_point:
+                              type: string
+                              minLength: 1
+                            set_quantity_per_person:
+                              type: string
+                              minLength: 1
+                            logo: {}
+                            unique_url: {}
+                            available_capacity:
+                              type: number
+                            accepting_orders:
+                              type: boolean
+                            accepting_collections:
+                              type: boolean
+                            accepting_deliveries:
+                              type: boolean
+                            tags:
+                              type: array
+                              uniqueItems: true
+                              minItems: 1
+                              items:
+                                required:
+                                  - id
+                                  - name
+                                  - type
+                                  - image_url
+                                  - created_at
+                                  - updated_at
+                                properties:
+                                  id:
+                                    type: number
+                                  name:
+                                    type: string
+                                    minLength: 1
+                                  type:
+                                    type: string
+                                    minLength: 1
+                                  image_url:
+                                    type: string
+                                    minLength: 1
+                                  created_at:
+                                    type: string
+                                    minLength: 1
+                                  updated_at:
+                                    type: string
+                                    minLength: 1
+                                  pivot:
+                                    type: object
+                                    properties:
+                                      meal_id:
+                                        type: string
+                                        minLength: 1
+                                      tag_id:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - meal_id
+                                      - tag_id
+                    required:
+                      - collection_points
+                required:
+                  - status
+                  - data
+              examples:
+                Success:
+                  value:
+                    status: success
+                    data:
+                      collection_points:
+                        - id: 1
+                          name: Harris and Sons
+                          address_line_1: 1 Holmes Haven
+                          address_line_2: Holly Fords
+                          city: Thomasview
+                          county: Somerset
+                          post_code: G69 7EA
+                          max_daily_capacity: 81
+                          lat: '51.509865'
+                          lng: '-0.118092'
+                          delivery_radius: 3
+                          quantity_of_meals: 1
+                          start_pick_up_time: '1974-10-14 11:44:01'
+                          end_pick_up_time: '1983-10-22 14:31:50'
+                          cut_off_point: '2008-08-19 08:48:16'
+                          set_quantity_per_person: '1'
+                          logo: null
+                          unique_url: null
+                          available_capacity: 81
+                          accepting_orders: true
+                          accepting_collections: true
+                          accepting_deliveries: true
+                          tags:
+                            - id: 1
+                              name: Royal Koelpin
+                              type: FOOD_TYPE_TAG
+                              image_url: 'https://lorempixel.com/640/480/?30443'
+                              created_at: '2021-02-08T23:59:18.000000Z'
+                              updated_at: '2021-02-08T23:59:18.000000Z'
+                              pivot:
+                                meal_id: '18'
+                                tag_id: '1'
+        '400':
+          description: Bad Request with no body
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+              examples:
+                example-1:
+                  value:
+                    status: error
+                    message: Postcode paramaters are required.
+      description: 'Get collection points near postcode '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                postcode:
+                  type: string
+                  minLength: 1
+              required:
+                - postcode
+      tags:
+        - Collection Points
 components:
   schemas:
     User:
