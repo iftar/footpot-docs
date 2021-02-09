@@ -2145,12 +2145,6 @@ paths:
       operationId: 'get-api-collection-points-:id-meals'
       description: returns a list of meals (with tags) avalible that has more than one in quantity
   /api/collection-points/near-me:
-    get:
-      summary: ''
-      tags: []
-      responses: {}
-      operationId: get-api-collection-points-near-me
-      description: ''
     post:
       summary: Get collection points near postcode
       operationId: post-api-collection-points-near-me
@@ -2368,8 +2362,26 @@ paths:
                 postcode:
                   type: string
                   minLength: 1
+                food_type_filter:
+                  type: array
+                  items:
+                    type: integer
+                dietary_requirements_filter:
+                  type: array
+                  items:
+                    type: integer
               required:
                 - postcode
+            examples:
+              example-1:
+                value:
+                  postcode: string
+                  food_type_filter:
+                    - 23
+                    - 34
+                  dietary_requirements_filter:
+                    - 12
+                    - 23
       tags:
         - Collection Points
 components:
