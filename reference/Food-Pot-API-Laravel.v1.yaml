@@ -950,7 +950,7 @@ paths:
     get:
       tags:
         - Collection Points
-      summary: '/collection-points/{id}'
+      summary: Gets collection using ID
       consumes:
         - application/json
       parameters: []
@@ -1833,6 +1833,88 @@ paths:
                       last_name:
                         - The last name field is required.
       description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  minLength: 1
+                last_name:
+                  type: string
+                  minLength: 1
+                email:
+                  type: string
+                  minLength: 1
+                collection_point_id:
+                  type: number
+                phone:
+                  type: string
+                  minLength: 1
+                address_line_1:
+                  type: string
+                  minLength: 1
+                address_line_2:
+                  type: string
+                  minLength: 1
+                city:
+                  type: string
+                  minLength: 1
+                county:
+                  type: string
+                  minLength: 1
+                post_code:
+                  type: string
+                  minLength: 1
+                notes:
+                  type: string
+                  minLength: 1
+                meals:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - meal_id
+                      - quantity
+                    properties:
+                      meal_id:
+                        type: number
+                      quantity:
+                        type: number
+              required:
+                - first_name
+                - last_name
+                - email
+                - collection_point_id
+                - phone
+                - address_line_1
+                - address_line_2
+                - city
+                - county
+                - post_code
+                - notes
+                - meals
+            examples:
+              example-1:
+                value:
+                  first_name: Share
+                  last_name: Iftar
+                  email: info@shareiftar.org
+                  collection_point_id: 42
+                  phone: '079001239876'
+                  address_line_1: 100 Manson House
+                  address_line_2: Old Guild Street
+                  city: London
+                  county: Tower Hamlets
+                  post_code: E1 5AB
+                  notes: Allergic to nuts
+                  meals:
+                    - meal_id: 4
+                      quantity: 5
   'api/user/orders/:id':
     get:
       tags:
@@ -1874,7 +1956,7 @@ paths:
           description: successful operation
   api/tags/food-type:
     get:
-      summary: Your GET endpoint
+      summary: Gets Food type/Meal type/Parcel type Tags
       tags:
         - tags
       responses:
@@ -1939,17 +2021,11 @@ paths:
                         image_url: 'https://lorempixel.com/640/480/?67957'
                         created_at: '2021-01-26T20:37:11.000000Z'
                         updated_at: '2021-01-26T20:37:11.000000Z'
-                      - id: 3
-                        name: Beth Treutel
-                        type: FOOD_TYPE_TAG
-                        image_url: 'https://lorempixel.com/640/480/?58295'
-                        created_at: '2021-01-26T20:37:11.000000Z'
-                        updated_at: '2021-01-26T20:37:11.000000Z'
       operationId: get-tags-food-type
-      description: Gets Tags which are Food Types like "Home Essentials"
+      description: Gets Tags which are Food Types like "Home Essentials" or "Halal"
   api/tags/dietary-requirements:
     get:
-      summary: Your GET endpoint
+      summary: Gets a list of dietary requirements tags
       responses:
         '200':
           description: OK
@@ -2018,7 +2094,7 @@ paths:
         - tags
   'api/collection-points/:id/meals':
     get:
-      summary: Your GET endpoint
+      summary: Gets a list of meals (with tags) that a collection has
       tags:
         - Collection Points
       responses:
