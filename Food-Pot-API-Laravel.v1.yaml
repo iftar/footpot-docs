@@ -347,314 +347,172 @@ paths:
                       - collection_points
                     properties:
                       collection_points:
-                        type: array
-                        uniqueItems: true
-                        minItems: 1
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            name:
-                              type: string
-                              minLength: 1
-                            address_line_1:
-                              type: string
-                              minLength: 1
-                            address_line_2:
-                              type: string
-                              minLength: 1
-                            city:
-                              type: string
-                              minLength: 1
-                            county:
-                              type: string
-                              minLength: 1
-                            post_code:
-                              type: string
-                              minLength: 1
-                            max_daily_capacity:
-                              type: number
-                            lat:
-                              type: string
-                              minLength: 1
-                            lng:
-                              type: string
-                              minLength: 1
-                            delivery_radius:
-                              type: number
-                            start_pick_up_time:
-                              type: string
-                              minLength: 1
-                            end_pick_up_time:
-                              type: string
-                              minLength: 1
-                            cut_off_point:
-                              type: string
-                              minLength: 1
-                            set_quantity_per_person:
-                              type: string
-                              minLength: 1
-                            logo:
-                              type:
-                                - string
-                                - 'null'
-                            slug:
-                              type:
-                                - string
-                                - 'null'
-                            available_capacity:
-                              type: number
-                            accepting_orders:
-                              type: boolean
-                            accepting_collections:
-                              type: boolean
-                            accepting_deliveries:
-                              type: boolean
-                            tags:
-                              type: array
-                              uniqueItems: true
-                              minItems: 1
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: number
-                                  name:
-                                    type: string
-                                    minLength: 1
+                        type: object
+                        required:
+                          - current_page
+                          - data
+                          - first_page_url
+                          - from
+                          - last_page
+                          - last_page_url
+                          - next_page_url
+                          - path
+                          - per_page
+                          - to
+                          - total
+                        properties:
+                          current_page:
+                            type: number
+                          data:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: number
+                                name:
+                                  type: string
+                                  minLength: 1
+                                address_line_1:
+                                  type: string
+                                  minLength: 1
+                                address_line_2:
+                                  type: string
+                                  minLength: 1
+                                city:
+                                  type: string
+                                  minLength: 1
+                                county:
+                                  type: string
+                                  minLength: 1
+                                post_code:
+                                  type: string
+                                  minLength: 1
+                                max_daily_capacity:
+                                  type: number
+                                lat:
+                                  type: string
+                                  minLength: 1
+                                lng:
+                                  type: string
+                                  minLength: 1
+                                delivery_radius:
+                                  type: number
+                                cut_off_point:
+                                  type: string
+                                  minLength: 1
+                                set_quantity_per_person:
+                                  type: string
+                                  minLength: 1
+                                logo:
                                   type:
-                                    type: string
-                                    minLength: 1
-                                  image_url:
-                                    type: string
-                                    minLength: 1
-                                  created_at:
-                                    type: string
-                                    minLength: 1
-                                  updated_at:
-                                    type: string
-                                    minLength: 1
-                                  pivot:
+                                    - string
+                                    - 'null'
+                                slug:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  minLength: 1
+                                available_capacity:
+                                  type: number
+                                accepting_orders:
+                                  type: boolean
+                                accepting_collections:
+                                  type: boolean
+                                accepting_deliveries:
+                                  type: boolean
+                                tags:
+                                  type: array
+                                  items:
+                                    type: object
+                                collection_point_time_slots:
+                                  type: array
+                                  uniqueItems: true
+                                  minItems: 1
+                                  items:
                                     type: object
                                     properties:
-                                      meal_id:
+                                      id:
+                                        type: number
+                                      collection_point_id:
+                                        type: number
+                                      start_time:
                                         type: string
                                         minLength: 1
-                                      tag_id:
+                                      end_time:
                                         type: string
                                         minLength: 1
+                                      max_capacity:
+                                        type: number
+                                      type:
+                                        type: string
+                                        minLength: 1
+                                      available_capacity:
+                                        type: number
+                                      accepting_orders:
+                                        type: boolean
                                     required:
-                                      - meal_id
-                                      - tag_id
-                                required:
-                                  - id
-                                  - name
-                                  - type
-                                  - image_url
-                                  - created_at
-                                  - updated_at
-                          required:
-                            - id
-                            - name
-                            - address_line_1
-                            - address_line_2
-                            - city
-                            - county
-                            - post_code
-                            - max_daily_capacity
-                            - lat
-                            - lng
-                            - delivery_radius
-                            - start_pick_up_time
-                            - end_pick_up_time
-                            - cut_off_point
-                            - set_quantity_per_person
-                            - available_capacity
-                            - accepting_orders
-                            - accepting_collections
-                            - accepting_deliveries
+                                      - id
+                                      - collection_point_id
+                                      - start_time
+                                      - end_time
+                                      - max_capacity
+                                      - type
+                                      - available_capacity
+                                      - accepting_orders
+                                meals:
+                                  type: array
+                                  items:
+                                    type: object
+                              required:
+                                - id
+                                - name
+                                - address_line_1
+                                - address_line_2
+                                - city
+                                - county
+                                - post_code
+                                - max_daily_capacity
+                                - lat
+                                - lng
+                                - delivery_radius
+                                - cut_off_point
+                                - set_quantity_per_person
+                                - slug
+                                - available_capacity
+                                - accepting_orders
+                                - accepting_collections
+                                - accepting_deliveries
+                          first_page_url:
+                            type: string
+                            minLength: 1
+                          from:
+                            type: number
+                          last_page:
+                            type: number
+                          last_page_url:
+                            type: string
+                            minLength: 1
+                          next_page_url:
+                            type: string
+                            minLength: 1
+                          path:
+                            type: string
+                            minLength: 1
+                          per_page:
+                            type: number
+                          prev_page_url: {}
+                          to:
+                            type: number
+                          total:
+                            type: number
                 required:
                   - status
                   - data
               examples:
-                example:
-                  value:
-                    status: success
-                    data:
-                      collection_points:
-                        - id: 1
-                          name: Harris and Sons
-                          address_line_1: 1 Holmes Haven
-                          address_line_2: Holly Fords
-                          city: Thomasview
-                          county: Somerset
-                          post_code: G69 7EA
-                          max_daily_capacity: 81
-                          lat: '51.509865'
-                          lng: '-0.118092'
-                          delivery_radius: 3
-                          start_pick_up_time: '1974-10-14 11:44:01'
-                          end_pick_up_time: '1983-10-22 14:31:50'
-                          cut_off_point: '2008-08-19 08:48:16'
-                          set_quantity_per_person: '1'
-                          logo: null
-                          slug: sunt-ea-voluptatem-non-repellendus-nostrum-tempore
-                          available_capacity: 81
-                          accepting_orders: true
-                          accepting_collections: true
-                          accepting_deliveries: true
-                          tags:
-                            - id: 1
-                              name: Home Essentials
-                              type: FOOD_TYPE_TAG
-                              image_url: 'https://lorempixel.com/640/480/?30443'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '1'
-                            - id: 2
-                              name: Halal
-                              type: DIETARY_REQUIREMENT_TAG
-                              image_url: 'https://lorempixel.com/640/480/?88586'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '2'
-                            - id: 12
-                              name: Gluten free
-                              type: DIETARY_REQUIREMENT_TAG
-                              image_url: 'https://lorempixel.com/640/480/?88586'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '2'
-                        - id: 2
-                          name: Johnson-Jackson
-                          address_line_1: 77 Sophie Well
-                          address_line_2: Thomas Oval
-                          city: Robertsland
-                          county: Wigtownshire
-                          post_code: CW1 5PG
-                          max_daily_capacity: 95
-                          lat: '51.509865'
-                          lng: '-0.118092'
-                          delivery_radius: 3
-                          start_pick_up_time: '2001-09-09 03:30:01'
-                          end_pick_up_time: '1978-08-26 23:13:28'
-                          cut_off_point: '2007-02-25 14:22:23'
-                          set_quantity_per_person: '1'
-                          logo: null
-                          slug: null
-                          available_capacity: 95
-                          accepting_orders: true
-                          accepting_collections: true
-                          accepting_deliveries: true
-                          tags:
-                            - id: 1
-                              name: Home Essentials
-                              type: FOOD_TYPE_TAG
-                              image_url: 'https://lorempixel.com/640/480/?30443'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '1'
-                            - id: 2
-                              name: Halal
-                              type: DIETARY_REQUIREMENT_TAG
-                              image_url: 'https://lorempixel.com/640/480/?88586'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '2'
-                            - id: 12
-                              name: Gluten free
-                              type: DIETARY_REQUIREMENT_TAG
-                              image_url: 'https://lorempixel.com/640/480/?88586'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '2'
-                        - id: 3
-                          name: 'Bennett, Bennett and Walker'
-                          address_line_1: |-
-                            Flat 62
-                            Jake Brooks
-                          address_line_2: Martin Lakes
-                          city: Carriehaven
-                          county: Northamptonshire
-                          post_code: LE4 4JR
-                          max_daily_capacity: 98
-                          lat: '51.509865'
-                          lng: '-0.118092'
-                          delivery_radius: 3
-                          start_pick_up_time: '2007-05-26 16:20:02'
-                          end_pick_up_time: '2013-01-23 12:04:56'
-                          cut_off_point: '1982-03-26 20:13:12'
-                          set_quantity_per_person: '1'
-                          logo: null
-                          slug: null
-                          available_capacity: 98
-                          accepting_orders: true
-                          accepting_collections: true
-                          accepting_deliveries: true
-                          tags:
-                            - id: 1
-                              name: Home Essentials
-                              type: FOOD_TYPE_TAG
-                              image_url: 'https://lorempixel.com/640/480/?30443'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '1'
-                            - id: 2
-                              name: Halal
-                              type: DIETARY_REQUIREMENT_TAG
-                              image_url: 'https://lorempixel.com/640/480/?88586'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '2'
-                            - id: 12
-                              name: Gluten free
-                              type: DIETARY_REQUIREMENT_TAG
-                              image_url: 'https://lorempixel.com/640/480/?88586'
-                              created_at: '2021-02-08T23:59:18.000000Z'
-                              updated_at: '2021-02-08T23:59:18.000000Z'
-                              pivot:
-                                meal_id: '18'
-                                tag_id: '2'
-                        - id: 4
-                          name: Wilson-Adams
-                          address_line_1: 54 Davis Light
-                          address_line_2: Wilson Cliff
-                          city: West Andrew
-                          county: Banffshire
-                          post_code: NP4 8LA
-                          max_daily_capacity: 93
-                          lat: '51.509865'
-                          lng: '-0.118092'
-                          delivery_radius: 3
-                          start_pick_up_time: '2011-04-18 12:42:09'
-                          end_pick_up_time: '2019-06-08 19:53:43'
-                          cut_off_point: '1978-04-16 10:01:05'
-                          set_quantity_per_person: '1'
-                          logo: null
-                          slug: null
-                          available_capacity: 93
-                          accepting_orders: true
-                          accepting_collections: true
-                          accepting_deliveries: true
-                          tags: []
-                example-2:
+                example-1:
                   value:
                     status: string
                     data:
@@ -672,25 +530,32 @@ paths:
                             lat: string
                             lng: string
                             delivery_radius: 0
+                            cut_off_point: string
+                            set_quantity_per_person: string
+                            logo: string
+                            slug: string
                             available_capacity: 0
                             accepting_orders: true
                             accepting_collections: true
                             accepting_deliveries: true
                             tags:
+                              - {}
+                            collection_point_time_slots:
                               - id: 0
-                                name: string
+                                collection_point_id: 0
+                                start_time: string
+                                end_time: string
+                                max_capacity: 0
                                 type: string
-                                image_url: string
-                                created_at: string
-                                updated_at: string
-                                pivot:
-                                  collection_point_id: string
-                                  tag_id: string
+                                available_capacity: 0
+                                accepting_orders: true
+                            meals:
+                              - {}
                         first_page_url: string
                         from: 0
                         last_page: 0
                         last_page_url: string
-                        next_page_url: null
+                        next_page_url: string
                         path: string
                         per_page: 0
                         prev_page_url: null
@@ -753,14 +618,6 @@ paths:
                             minLength: 1
                           delivery_radius:
                             type: number
-                          quantity_of_meals:
-                            type: number
-                          start_pick_up_time:
-                            type: string
-                            minLength: 1
-                          end_pick_up_time:
-                            type: string
-                            minLength: 1
                           cut_off_point:
                             type: string
                             minLength: 1
@@ -768,7 +625,9 @@ paths:
                             type: string
                             minLength: 1
                           logo: {}
-                          slug: {}
+                          slug:
+                            type: string
+                            minLength: 1
                           available_capacity:
                             type: number
                           accepting_orders:
@@ -779,46 +638,48 @@ paths:
                             type: boolean
                           tags:
                             type: array
+                            items:
+                              required: []
+                              properties: {}
+                          collection_point_time_slots:
+                            type: array
                             uniqueItems: true
                             minItems: 1
                             items:
                               required:
                                 - id
-                                - name
+                                - collection_point_id
+                                - start_time
+                                - end_time
+                                - max_capacity
                                 - type
-                                - image_url
-                                - created_at
-                                - updated_at
+                                - available_capacity
+                                - accepting_orders
                               properties:
                                 id:
                                   type: number
-                                name:
+                                collection_point_id:
+                                  type: number
+                                start_time:
                                   type: string
                                   minLength: 1
+                                end_time:
+                                  type: string
+                                  minLength: 1
+                                max_capacity:
+                                  type: number
                                 type:
                                   type: string
                                   minLength: 1
-                                image_url:
-                                  type: string
-                                  minLength: 1
-                                created_at:
-                                  type: string
-                                  minLength: 1
-                                updated_at:
-                                  type: string
-                                  minLength: 1
-                                pivot:
-                                  type: object
-                                  properties:
-                                    meal_id:
-                                      type: string
-                                      minLength: 1
-                                    tag_id:
-                                      type: string
-                                      minLength: 1
-                                  required:
-                                    - meal_id
-                                    - tag_id
+                                available_capacity:
+                                  type: number
+                                accepting_orders:
+                                  type: boolean
+                          meals:
+                            type: array
+                            items:
+                              required: []
+                              properties: {}
                         required:
                           - id
                           - name
@@ -831,16 +692,16 @@ paths:
                           - lat
                           - lng
                           - delivery_radius
-                          - quantity_of_meals
-                          - start_pick_up_time
-                          - end_pick_up_time
                           - cut_off_point
                           - set_quantity_per_person
+                          - slug
                           - available_capacity
                           - accepting_orders
                           - accepting_collections
                           - accepting_deliveries
                           - tags
+                          - collection_point_time_slots
+                          - meals
                     required:
                       - collection_point
                 required:
@@ -895,6 +756,60 @@ paths:
                             pivot:
                               meal_id: '12'
                               tag_id: '9'
+                example-2:
+                  value:
+                    status: string
+                    data:
+                      collection_point:
+                        id: 0
+                        name: string
+                        address_line_1: string
+                        address_line_2: string
+                        city: string
+                        county: string
+                        post_code: string
+                        max_daily_capacity: 0
+                        lat: string
+                        lng: string
+                        delivery_radius: 0
+                        cut_off_point: string
+                        set_quantity_per_person: string
+                        logo: null
+                        slug: string
+                        available_capacity: 0
+                        accepting_orders: true
+                        accepting_collections: true
+                        accepting_deliveries: true
+                        tags:
+                          - id: 6
+                            name: School Essentials
+                            type: FOOD_TYPE_TAG
+                            image_url: 'https://lorempixel.com/640/480/?14038'
+                            created_at: '2021-02-08T23:59:18.000000Z'
+                            updated_at: '2021-02-08T23:59:18.000000Z'
+                            pivot:
+                              meal_id: '6'
+                              tag_id: '6'
+                          - id: 9
+                            name: Halal
+                            type: DIETARY_REQUIREMENT_TAG
+                            image_url: 'https://lorempixel.com/640/480/?98254'
+                            created_at: '2021-02-08T23:59:18.000000Z'
+                            updated_at: '2021-02-08T23:59:18.000000Z'
+                            pivot:
+                              meal_id: '12'
+                              tag_id: '9'
+                        collection_point_time_slots:
+                          - id: 0
+                            collection_point_id: 0
+                            start_time: string
+                            end_time: string
+                            max_capacity: 0
+                            type: string
+                            available_capacity: 0
+                            accepting_orders: true
+                        meals:
+                          - {}
   'api/collection-points/:id/can-deliver-to-location':
     post:
       summary: Check if  collection point can deliver to a location
@@ -955,6 +870,10 @@ paths:
                   minLength: 1
               required:
                 - postcode
+            examples:
+              example-1:
+                value:
+                  postcode: string
       tags:
         - Collection Points
   api/forgot-password:
@@ -1391,21 +1310,6 @@ paths:
         description: ''
       description: 'Registers User '
   api/user:
-    post:
-      tags:
-        - Account
-      summary: Update logged in user info
-      consumes:
-        - application/json
-      parameters:
-        - name: Content-Type
-          in: header
-          type: string
-          description: ''
-          required: true
-      responses:
-        '200':
-          description: successful operation
     get:
       tags:
         - Account
@@ -1691,6 +1595,7 @@ paths:
                   last_name: Iftar
                   email: info@shareiftar.org
                   collection_point_id: 42
+                  collection_point_time_slot_id: 1
                   phone: '079001239876'
                   address_line_1: 100 Manson House
                   address_line_2: Old Guild Street
