@@ -539,18 +539,51 @@ paths:
                             accepting_collections: true
                             accepting_deliveries: true
                             tags:
-                              - {}
+                              - id: 6
+                                name: School Essentials
+                                type: FOOD_TYPE_TAG
+                                image_url: 'https://lorempixel.com/640/480/?14038'
+                                created_at: '2021-02-08T23:59:18.000000Z'
+                                updated_at: '2021-02-08T23:59:18.000000Z'
+                                pivot:
+                                  meal_id: '6'
+                                  tag_id: '6'
+                              - id: 9
+                                name: Halal
+                                type: DIETARY_REQUIREMENT_TAG
+                                image_url: 'https://lorempixel.com/640/480/?98254'
+                                created_at: '2021-02-08T23:59:18.000000Z'
+                                updated_at: '2021-02-08T23:59:18.000000Z'
+                                pivot:
+                                  meal_id: '12'
+                                  tag_id: '9'
                             collection_point_time_slots:
-                              - id: 0
-                                collection_point_id: 0
-                                start_time: string
-                                end_time: string
-                                max_capacity: 0
-                                type: string
-                                available_capacity: 0
-                                accepting_orders: true
+                              - id: 1
+                                collection_point_id: 1
+                                start_time: '18:00'
+                                end_time: '18:15'
+                                max_capacity: 5
+                                type: user_pickup
+                                available_capacity: -2
+                                accepting_orders: false
                             meals:
-                              - {}
+                              - id: 19
+                                name: Lamb Taouk
+                                description: Blanditiis cupiditate veritatis perferendis aut animi necessitatibus.
+                                total_quantity_available: '21'
+                                collection_point_id: 81
+                                created_at: '2021-03-18T22:38:36.000000Z'
+                                updated_at: '2021-03-18T22:38:36.000000Z'
+                                tags:
+                                  - id: 9
+                                    name: Halal
+                                    type: DIETARY_REQUIREMENT_TAG
+                                    image_url: 'https://lorempixel.com/640/480/?98254'
+                                    created_at: '2021-02-08T23:59:18.000000Z'
+                                    updated_at: '2021-02-08T23:59:18.000000Z'
+                                    pivot:
+                                      meal_id: '19'
+                                      tag_id: '9'
                         first_page_url: string
                         from: 0
                         last_page: 0
