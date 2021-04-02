@@ -1201,12 +1201,8 @@ paths:
                       user:
                         type: object
                         properties:
-                          first_name:
-                            type: string
-                            minLength: 1
-                          last_name:
-                            type: string
-                            minLength: 1
+                          first_name: {}
+                          last_name: {}
                           email:
                             type: string
                             minLength: 1
@@ -1225,21 +1221,130 @@ paths:
                           id:
                             type: number
                         required:
-                          - first_name
-                          - last_name
                           - email
                           - type
                           - status
                           - updated_at
                           - created_at
                           - id
+                      collection_point:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            minLength: 1
+                          address_line_1:
+                            type: string
+                            minLength: 1
+                          address_line_2:
+                            type: string
+                            minLength: 1
+                          city:
+                            type: string
+                            minLength: 1
+                          county:
+                            type: string
+                            minLength: 1
+                          post_code:
+                            type: string
+                            minLength: 1
+                          max_daily_capacity:
+                            type: number
+                          cut_off_point:
+                            type: string
+                            minLength: 1
+                          slug:
+                            type: string
+                            minLength: 1
+                          id:
+                            type: number
+                          available_capacity:
+                            type: number
+                          accepting_orders:
+                            type: boolean
+                          accepting_collections:
+                            type: boolean
+                          accepting_deliveries:
+                            type: boolean
+                          tags:
+                            type: array
+                            items:
+                              required: []
+                              properties: {}
+                          collection_point_time_slots:
+                            type: array
+                            items:
+                              required: []
+                              properties: {}
+                          meals:
+                            type: array
+                            items:
+                              required: []
+                              properties: {}
+                        required:
+                          - name
+                          - address_line_1
+                          - address_line_2
+                          - city
+                          - county
+                          - post_code
+                          - max_daily_capacity
+                          - cut_off_point
+                          - slug
+                          - id
+                          - available_capacity
+                          - accepting_orders
+                          - accepting_collections
+                          - accepting_deliveries
+                          - tags
+                          - collection_point_time_slots
+                          - meals
+                      charity:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            minLength: 1
+                          registration_number:
+                            type: string
+                            minLength: 1
+                          max_delivery_capacity:
+                            type: number
+                          company_website: {}
+                          contact_telephone:
+                            type: string
+                            minLength: 1
+                          personal_email: {}
+                          personal_number: {}
+                          has_food_hygiene_cert:
+                            type: boolean
+                          logo: {}
+                          updated_at:
+                            type: string
+                            minLength: 1
+                          created_at:
+                            type: string
+                            minLength: 1
+                          id:
+                            type: number
+                        required:
+                          - name
+                          - registration_number
+                          - max_delivery_capacity
+                          - contact_telephone
+                          - has_food_hygiene_cert
+                          - updated_at
+                          - created_at
+                          - id
                     required:
                       - user
+                      - collection_point
+                      - charity
                 required:
                   - status
                   - data
               examples:
-                example-1:
+                'Normal User ':
                   value:
                     status: success
                     data:
@@ -1252,6 +1357,50 @@ paths:
                         updated_at: '2021-01-28T23:21:28.000000Z'
                         created_at: '2021-01-28T23:21:28.000000Z'
                         id: 263
+                Charity User:
+                  value:
+                    status: success
+                    data:
+                      user:
+                        first_name: null
+                        last_name: null
+                        email: examssdsdsdssdsdple@gmail.com
+                        type: charity
+                        status: approved
+                        updated_at: '2021-04-02T00:33:34.000000Z'
+                        created_at: '2021-04-02T00:33:34.000000Z'
+                        id: 278
+                      collection_point:
+                        name: Deen developers
+                        address_line_1: 23 Bankes Rd
+                        address_line_2: Small Heath
+                        city: Birmingham
+                        county: West Midlands
+                        post_code: B10 9PP
+                        max_daily_capacity: 0
+                        cut_off_point: '15:00:00'
+                        slug: deen-developers-4
+                        id: 96
+                        available_capacity: 0
+                        accepting_orders: false
+                        accepting_collections: false
+                        accepting_deliveries: false
+                        tags: []
+                        collection_point_time_slots: []
+                        meals: []
+                      charity:
+                        name: Deen developers
+                        registration_number: '23232332'
+                        max_delivery_capacity: 0
+                        company_website: null
+                        contact_telephone: '07834394023'
+                        personal_email: null
+                        personal_number: null
+                        has_food_hygiene_cert: false
+                        logo: null
+                        updated_at: '2021-04-02T00:33:34.000000Z'
+                        created_at: '2021-04-02T00:33:34.000000Z'
+                        id: 22
         '422':
           description: Unprocessable Entity (WebDAV)
           content:
@@ -1326,20 +1475,63 @@ paths:
                 confirm:
                   type: string
                   minLength: 1
+                charity_name:
+                  type: string
+                  minLength: 1
+                type:
+                  type: string
+                  minLength: 1
+                registration_number:
+                  type: string
+                  minLength: 1
+                contact_telephone:
+                  type: string
+                  minLength: 1
+                address_line_1:
+                  type: string
+                  minLength: 1
+                address_line_2:
+                  type: string
+                  minLength: 1
+                city:
+                  type: string
+                  minLength: 1
+                county:
+                  type: string
+                  minLength: 1
+                post_code:
+                  type: string
+                  minLength: 1
               required:
-                - first_name
-                - last_name
                 - email
                 - password
                 - confirm
+                - type
             examples:
-              example-1:
+              'For Charity User ':
                 value:
                   first_name: Ahmed
                   last_name: Mire
                   email: example1@gmail.com
                   password: password
                   confirm: password
+                  charity_name: Deen developers
+                  type: charity
+                  registration_number: '23232332'
+                  contact_telephone: '07834394023'
+                  address_line_1: 23 Bankes Rd
+                  address_line_2: Small Heath
+                  city: Birmingham
+                  county: West Midlands
+                  post_code: B10 9PP
+              Normal user:
+                value:
+                  first_name: Ahmed
+                  last_name: Mire
+                  email: example1@gmail.com
+                  password: password
+                  confirm: password
+                  type: user
         description: ''
       description: 'Registers User '
   api/user:
